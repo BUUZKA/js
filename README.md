@@ -1,0 +1,2 @@
+# js
+ na pliki JS
