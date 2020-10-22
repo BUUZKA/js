@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="conteiner">
+
+    </div>
+    <script>
+      var losowanaListaKart = Array();
+      var odlonieteKarty = Array();
+      var odslonKarte
+      losujKarty()
+      pokazKarty()
+
+
+    function pokazKarty(){
+      for(var i = 0 ; i < losowanaListaKart.lenght ; i++){
+          var img = document.createElement("img")
+        if(odslonieteKarty[i] == true)
+            img.src = losowanaListaKart[i];
+        else
+            img.src = "img/plecy.jpg"
+          img.id = i.toString();
+          img.addEventListener("click", odslonKarte(), false);
+          document.getElementById('conteiner').appendChild(img);
+      }
+       function odslonKarte(event){
+           console.log(event.srcElement.id);
+           
+           if (odslonieteKarty == null){
+            odslonieteKarty = event.srcElement.id;
+            odslonieteKarty[event.srcElement.id] = true;
+           } else {
+               if(odslonieteKarty == event.srcElement.id){
+                   odlonieteKarty[event.srcElement.id] = true;
+                   odslonieteKarty = null;
+               }
+           }
+       }
+
+    }
+    function losujKarty(){
+      var listaKart = Array(); //ma cprzechowac url wzgledem index.html - img/0x.jph
+      for (var i = 1; i <= 9; i++) {
+          var url = "img/0" + i + ".jpg"
+          listaKart.push(url);
+          listaKart.push(url);
+      }
+      var losowanaListaKart = Array();
+    while(listaKart.lenght > 0) {
+        var r = Math.random() * (listaKart.lenght - 1)
+        r = Math.round(r);
+        var wyciagnietaKarta = listaKart.splice(r, 1)[0];
+        losowanaListaKart.push(wyciagnietaKarta);
+        odslonieteKarty.push("false");
+    }
+      console.log(losowanaListaKart);
+    }
+
+    </script>
+</body>
+</html>
